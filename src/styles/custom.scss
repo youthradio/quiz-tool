@@ -1,0 +1,64 @@
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "icons";
+
+body {
+  font-family: 'Assistant', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $black;
+}
+body, html {
+  height: 100%;
+}
+
+
+h1 {
+  font: 900 50px/1.2 "Days Sans Black", sans-serif;
+  color: white;
+}
+
+.a-dark:hover {
+  color: $black;
+  background-color: $white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.a-dark {
+  background-color: $black;
+  color: $white;
+}
+.pointer {
+  cursor: pointer;
+}
+
+// Your variable overrides
+$body-bg: $white;
+$body-color: $black;
+$gray-900: $black;
+
+.icon:hover {
+  color: $black;
+  background-color: $white;
+}
+.icon {
+  cursor: pointer;
+  border-radius: 25%;
+  background-color: $black;
+  color: $white;
+}
+
+/* Document level adjustments */
+html {
+  font-size: 17px;
+}
+@media (max-width: 992px) {
+  html { font-size: 15px; }
+}
+@media (max-width: 576px) {
+  html { font-size: 13px; }
+}
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

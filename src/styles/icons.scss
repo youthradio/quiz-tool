@@ -1,0 +1,85 @@
+@include font-face("yr-icons", "assets/icons/icons", null, null, eot woff ttf svg);
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'yr-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-bold-down:before {
+  content: "\e900";
+}
+
+.icon-arrow-bold-top:before {
+  content: "\e901";
+}
+
+.icon-arrow-right:before {
+  content: "\e902";
+}
+
+.icon-email-inverted:before {
+  content: "\e903";
+}
+
+.icon-facebook-inverted:before {
+  content: "\e904";
+}
+
+.icon-facebook:before {
+  content: "\e905";
+}
+
+.icon-hamburger:before {
+  content: "\e906";
+}
+
+.icon-instagram:before {
+  content: "\e907";
+}
+
+.icon-pause:before {
+  content: "\e908";
+}
+
+.icon-play-inverted:before {
+  content: "\e909";
+}
+
+.icon-play:before {
+  content: "\e90a";
+}
+
+.icon-search:before {
+  content: "\e90b";
+}
+
+.icon-close:before {
+  content: "\e911";
+}
+
+.icon-share:before {
+  content: "\e90c";
+}
+
+.icon-twitter-inverted:before {
+  content: "\e90d";
+}
+
+.icon-twitter:before {
+  content: "\e90e";
+}
+
+.icon-youtube:before {
+  content: "\e90f";
+}
+
+.icon-join-us:before {
+  content: "\e910";
+}

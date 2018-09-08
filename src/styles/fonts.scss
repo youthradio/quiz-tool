@@ -1,0 +1,14 @@
+// Google Fonts: Assistant, Roboto Mono
+@import url('https://fonts.googleapis.com/css?family=Assistant:300,400,600,700,800|Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i');
+
+// Calps
+@include font-face(Calps, "assets/fonts/Calps/CalpsRegular", null, null, eot woff2 woff ttf);
+@include font-face(Calps, "assets/fonts/Calps/CalpsLight", 300, null, eot woff2 woff ttf);
+@include font-face(Calps, "assets/fonts/Calps/CalpsMedium", 500, null, eot woff2 woff ttf);
+@include font-face(Calps, "assets/fonts/Calps/CalpsBold", 600, null, eot woff2 woff ttf);
+
+// Days Sans
+@include font-face("Days Sans", "assets/fonts/DaysSans/DaysSansBlack", 900);
+
+// Solano Gothic MVB
+@include font-face("Solano Gothic MVB", "assets/fonts/SolanoGothicMVB/SolanoGothicMVBSemiBold", 600);

@@ -1,0 +1,160 @@
+@mixin logo-mix($color, $width) {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$width}" viewBox="0 0 40 40"><path fill="#{$color}" class="svg-logo" d="M37.17,0h-1.7A2.8,2.8,0,0,0,33,1.5c-.1.16-.2.46-.31.61a2.24,2.24,0,0,1-1.84.74,1.84,1.84,0,0,1-1.88-1.12A2.84,2.84,0,0,0,26.34,0h-1.7A2.83,2.83,0,0,0,21.8,2.84v6a2,2,0,0,1-1.67,1.84H20c-.89-.08-1.52-1.15-1.64-2.13l0-.08A2.84,2.84,0,0,0,15.57,6H13.86A2.83,2.83,0,0,0,11,8.82V20.3c-.07,1.07-.86,2.18-1.83,2.18s-1.83-1.2-1.83-2.3V8.83A2.83,2.83,0,0,0,4.54,6H2.83A2.83,2.83,0,0,0,0,8.83V23.6a2.83,2.83,0,0,0,2.83,2.82h1.7a2.84,2.84,0,0,0,2.56-1.6,2.59,2.59,0,0,1,.28-.55,1.86,1.86,0,0,1,1-.61,3.47,3.47,0,0,1,.78-.1A2,2,0,0,1,11,25.1V38.31c0,3.28,7.38,1.92,7.38-5.27V13.64a2,2,0,0,1,1.64-2h.09a2,2,0,0,1,1.67,2v5.78a2.83,2.83,0,0,0,2.83,2.82h1.71a2.83,2.83,0,0,0,2.83-2.82V6.11c0-1.38.66-2.18,1.63-2.18s1.8,1.16,1.83,2.24v4.24c0,1.56,1.36,1.69,2.82,1.69a4.1,4.1,0,0,0,3.18-1.53A5.12,5.12,0,0,0,40,6.72V2.82A2.83,2.83,0,0,0,37.17,0"/></svg>');
+}
+
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@mixin breakpoint($device_or_width) {
+  @if $device_or_width == small {
+    @media (min-width: 576px) {
+      @content;
+    }
+  } @else if $device_or_width == medium {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $device_or_width == large {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $device_or_width == extra-large {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $device_or_width) {
+      @content;
+    }
+  }
+}
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+          eot: "?",
+          svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+          otf: "opentype",
+          ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+// =============================================================================
+// Border Radius
+// =============================================================================
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box; /* stops bg color from leaking outside the border: */
+}
+
+// Single side border-radius
+
+@mixin border-top-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-bottom-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+// =============================================================================
+// Transition
+// =============================================================================
+
+@mixin transition($property: all, $duration: .15s, $ease: linear) {
+  -webkit-transition: $property $duration $ease;
+  -moz-transition: $property $duration $ease;
+  -o-transition: $property $duration $ease;
+  transition: $property $duration $ease;
+}
+
+@mixin custom-transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+// =============================================================================
+// Transform
+// =============================================================================
+
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
+// =============================================================================
+// Box Shadow
+// =============================================================================
+
+@mixin box-shadow($args...) {
+  -webkit-box-shadow: $args;
+  -moz-box-shadow: $args;
+  box-shadow: $args;
+}
