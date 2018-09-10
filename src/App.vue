@@ -1,14 +1,16 @@
 <template>
   <div class="container-fluid" id="app">
-    <h1>HAHAH testing</h1>
-
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto">
+        <h1>Quiz</h1>
+        <QuizFront msg="Welcome to Your Vue.js App"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import QuizFront from './components/QuizFront.vue'
 
 const QUERY = (id) => `
 query {
@@ -34,7 +36,7 @@ query {
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    QuizFront
   },
   data() {
     return {
