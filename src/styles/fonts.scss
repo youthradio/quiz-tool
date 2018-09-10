@@ -8,7 +8,7 @@
 @include font-face(Calps, "assets/fonts/Calps/CalpsBold", 600, null, eot woff2 woff ttf);
 
 // Days Sans
-@include font-face("Days Sans", "assets/fonts/DaysSans/DaysSansBlack", 900);
+@include font-face(DaysSansBlack, "assets/fonts/DaysSans/DaysSansBlack", 900);
 
 // Solano Gothic MVB
-@include font-face("Solano Gothic MVB", "assets/fonts/SolanoGothicMVB/SolanoGothicMVBSemiBold", 600);
+@include font-face(SolanoGothicMVBSemiBold, "assets/fonts/SolanoGothicMVB/SolanoGothicMVBSemiBold", 600);

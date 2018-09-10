@@ -3,8 +3,10 @@
 @import "fonts";
 @import "icons";
 
+
+$font-family-sans-serif:  'Assistant', sans-serif;
+
 body {
-  font-family: 'Assistant', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $black;
@@ -15,7 +17,7 @@ body, html {
 
 
 h1 {
-  font: 900 50px/1.2 "Days Sans Black", sans-serif;
+  font: 900 50px/1.2 'Days Sans Black', sans-serif !important;
   color: white;
 }
 
