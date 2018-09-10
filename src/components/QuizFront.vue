@@ -36,9 +36,9 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'QuizFront',
   props: {
-    msg: String
+    data: Object
   }
 }
 </script>
