@@ -39,16 +39,16 @@
       </div>
       <template v-if="!quizResult">
         <template v-if="!isLoading">
-          <button v-for="(option, index) in quizCurrQuestion.options" :key="option.id" type="button" :class="[clickedOption === index? 'active' : '','btn btn-outline-secondary btn-block']" @click="processResponse(index)">{{ option.optionText }}</button>
+          <button v-for="(option, index) in quizCurrQuestion.options" :key="option.id" type="button" :disabled="hasRespondOption && clickedOption !== index" :class="[clickedOption === index? 'active' : '','btn btn-outline-secondary btn-block']" @click="processResponse(index)">{{ option.optionText }}</button>
         </template>
         <template v-else>
           <button type="button" class="btn btn-outline-secondary btn-block">Loading...</button>
         </template>
-        <template v-if="response">
+        <template v-if="hasRespondOption">
           <div class="row mb-5">
             <div class="col">
               <p class="mt-2">
-                <span class="answer font-weight-bold"> {{ questionResult.yesNo }} </span> {{questionResult.resultText}}
+                <div :class="[questionResult.yesNo == 'No'? 'shakeNo': 'shakeYes','answer font-weight-bold d-inline-block']"> {{ questionResult.yesNo }} </div> {{questionResult.resultText}}
               </p>
                 <div class="text-right pulse">
                   <span class="icon-arrow-right arrow" @click="nextQuestion"></span>
@@ -68,7 +68,7 @@ export default {
   name: 'QuizFront',
   data() {
     return {
-      response: false,
+      hasRespondOption: false,
       quizResult: false,
       currQuestionCounter: 0,
       questionResult: {},
@@ -88,13 +88,13 @@ export default {
           this.questionResult.yesNo = "No"
           this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
         }
-        this.response = true;
+        this.hasRespondOption = true;
       }
     },
     nextQuestion() {
       this.currQuestionCounter++;
       this.clickedOption = -1;
-      this.response = false;
+      this.hasRespondOption = false;
       if(this.currQuestionCounter >= this.totalQuestion){
         this.quizResult = true;
       }
@@ -104,7 +104,7 @@ export default {
       this.currQuestionCounter = 0;
       this.clickedOption = -1;
       this.quizResult = false;
-      this.response = false;
+      this.hasRespondOption = false;
     }
   },
   computed: {
@@ -177,7 +177,6 @@ h1 {
     animation-direction: alternate;
     animation-iteration-count: infinite;
 }
-
 @keyframes pulse {
     from {
         transform: translateX(-5px);
@@ -187,6 +186,46 @@ h1 {
     }
 }
 
+.shakeNo {
+  animation: shakeNo 0.82s ease-in both;
+}
+.shakeYes {
+  animation: shakeYes 0.82s ease-in both;
+}
+@keyframes shakeNo {
+  10%, 90% {
+    transform: translateX(-1px);
+  }
+
+  20%, 80% {
+    transform: translateX(2px);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(-4px);
+  }
+
+  40%, 60% {
+    transform: translateX(4px);
+  }
+}
+@keyframes shakeYes {
+  10%, 90% {
+    transform: translateY(-1px);
+  }
+
+  20%, 80% {
+    transform: translateY(2px);
+  }
+
+  30%, 50%, 70% {
+    transform: translateY(-4px);
+  }
+
+  40%, 60% {
+    transform: translateY(4px);
+  }
+}
 .texture-back {
     position: absolute;
     z-index: -1;
