@@ -3,8 +3,10 @@
     <div class="col-12 col-md-12 mx-auto">
 
       <div class="position-relative w-100">
-        <span class="num"><h1>1</h1></span>
         <template v-if="!quizResult">
+          <span class="num">
+            <h1>{{ currQuestionCounter + 1 }}</h1>
+          </span>
           <img
             :src="isLoading ? 'null' : quizCurrQuestion.featureImage"
             class="img-fluid w-100">
