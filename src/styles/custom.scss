@@ -16,11 +16,11 @@ body, html {
 }
 
 
-h1 {
-  font: 900 50px/1.2 'Days Sans Black', sans-serif !important;
-  color: $sky-blue !important; 
+h1, h2, h3, h4 {
+  font-weight: 900 !important;
+  font-family: 'Days Sans Black', sans-serif !important;
+  color: $sky-blue !important;
 }
-
 .a-dark:hover {
   color: $black;
   background-color: $white;

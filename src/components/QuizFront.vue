@@ -4,35 +4,60 @@
 
     <div class="position-relative w-100">
       <span class="num"><h1>1</h1></span>
-      <img class="img-fluid w-100" :src=" isLoading ? 'null' : quizCurrQuestion.featureImage">
+      <template v-if="!quizResult">
+        <img class="img-fluid w-100" :src="isLoading ? 'null' : quizCurrQuestion.featureImage">
+      </template>
+      <template v-else>
+        <img class="img-fluid w-100" src="https://i.imgur.com/bieYsvQ.jpg">
+      </template>
       <div class="texture-back"> </div>
     </div>
     <div class="bodyQ">
       <div class="card my-3">
-        <div class="p-2">
-          {{ isLoading ? 'Loading...' : quizCurrQuestion.questionText }}
-        </div>
-      </div>
-      <template v-if="!isLoading">
-        <button v-for="(option, index) in quizCurrQuestion.options" :key="option.id" type="button" :class="[clickedOption === index? 'active' : '','btn btn-outline-secondary btn-block']" @click="processResponse(index)">{{ option.optionText }}</button>
-      </template>
-      <template v-else>
-        <button type="button" class="btn btn-outline-secondary btn-block">Loading...</button>
-      </template>
-      <template v-if="response">
-        <div class="row mb-5">
-          <div class="col">
-            <p class="mt-2">
-              <span class="answer font-weight-bold "> {{ questionResult.yesNo }} </span> {{questionResult.resultText}}
+        <template v-if="quizResult">
+            <div class="card-body">
+              <h3> You are ready to hit the polls! </h3>
+              <p>
+                You got <span class="correct">{{ totalScore }}</span> out of <span class="qList">{{ totalQuestion }}</span> correct! This is a short description about your result. Result response should be short.
             </p>
-              <div class="text-right pulse">
-                <span class="icon-arrow-right arrow"></span>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="icon-facebook-inverted share-icon m-1" @click="nextQuestion"></span>
+              <span class="icon-twitter-inverted share-icon m-1" @click="nextQuestion"></span>
+
+              <div class="ml-auto align-middle pointer d-flex align-items-center" @click="tryAgain">
+                 <span>Try Again</span>
+                 <div class="ml-2 icon-arrow-right pulse"></div>
               </div>
+            </div>
+        </template>
+        <template v-else>
+          <div class="p-2">
+            {{ isLoading ? 'Loading...' : quizCurrQuestion.questionText }}
           </div>
+        </template>
+      </div>
+      <template v-if="!quizResult">
+        <template v-if="!isLoading">
+          <button v-for="(option, index) in quizCurrQuestion.options" :key="option.id" type="button" :class="[clickedOption === index? 'active' : '','btn btn-outline-secondary btn-block']" @click="processResponse(index)">{{ option.optionText }}</button>
+        </template>
+        <template v-else>
+          <button type="button" class="btn btn-outline-secondary btn-block">Loading...</button>
+        </template>
+        <template v-if="response">
+          <div class="row mb-5">
+            <div class="col">
+              <p class="mt-2">
+                <span class="answer font-weight-bold"> {{ questionResult.yesNo }} </span> {{questionResult.resultText}}
+              </p>
+                <div class="text-right pulse">
+                  <span class="icon-arrow-right arrow" @click="nextQuestion"></span>
+                </div>
+            </div>
 
-        </div>
+          </div>
+        </template>
       </template>
-
     </div>
   </div>
 </div>
@@ -44,40 +69,63 @@ export default {
   data() {
     return {
       response: false,
+      quizResult: false,
       currQuestionCounter: 0,
       questionResult: {},
       clickedOption: -1,
+      totalScore: 0,
     }
   },
   methods: {
     processResponse(index) {
-      if(this.clickedOption < 0){
+      if (this.clickedOption < 0) {
         this.clickedOption = index;
-        if(this.quizCurrQuestion.options[index].correctOption){
+        if (this.quizCurrQuestion.options[index].correctOption) {
+          this.totalScore++;
           this.questionResult.yesNo = "Yes"
           this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
-        }else{
+        } else {
           this.questionResult.yesNo = "No"
           this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
         }
         this.response = true;
       }
+    },
+    nextQuestion() {
+      this.currQuestionCounter++;
+      this.clickedOption = -1;
+      this.response = false;
+      if(this.currQuestionCounter >= this.totalQuestion){
+        this.quizResult = true;
+      }
+    },
+    tryAgain() {
+      this.totalScore = 0;
+      this.currQuestionCounter = 0;
+      this.clickedOption = -1;
+      this.quizResult = false;
+      this.response = false;
     }
   },
   computed: {
-    isLoading(){
+    isLoading() {
       return this.$store.state.isLoading;
     },
     quizData() {
       return this.$store.state.quizData;
     },
     quizQuestions() {
-      if(!this.isLoading){
+      if (!this.isLoading) {
         return this.$store.state.quizData.questions;
       }
     },
+    totalQuestion() {
+      if (!this.isLoading) {
+        return this.$store.state.quizData.questions.length;
+      }
+    },
     quizCurrQuestion() {
-      if(!this.isLoading){
+      if (!this.isLoading && this.currQuestionCounter < this.totalQuestion) {
         return this.quizQuestions[this.currQuestionCounter];
       }
     }
@@ -90,14 +138,13 @@ export default {
 @import '~@/styles/variables';
 
 h1 {
-  color: $white !important;
+    color: $white !important;
 }
-
 .btn {
     background-color: $white;
 }
 .img-limit {
-  max-width: 30px;
+    max-width: 30px;
 }
 
 .question {
@@ -116,25 +163,28 @@ h1 {
 }
 
 .arrow {
-  color: $green;
-  font-size: 2rem;
-
+    color: $sky-blue;
+    font-size: 2rem;
+}
+.share-icon {
+    color: $sky-blue;
+    font-size: 2rem;
 }
 .pulse {
-  cursor: pointer;
-  animation-duration: 0.5s;
-  animation-name: pulse;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
+    cursor: pointer;
+    animation-duration: 0.5s;
+    animation-name: pulse;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
 }
 
 @keyframes pulse {
-  from {
-    transform: translateX(0)
-  }
-  to {
-    transform: translateX(10px)
-  }
+    from {
+        transform: translateX(-5px);
+    }
+    to {
+        transform: translateX(0px);
+    }
 }
 
 .texture-back {
@@ -165,6 +215,4 @@ h1 {
     // top: 0%;
     /*   font-weight: medium; */
 }
-
-
 </style>
