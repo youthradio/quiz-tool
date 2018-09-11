@@ -4,30 +4,34 @@
 
     <div class="position-relative w-100">
       <span class="num"><h1>1</h1></span>
-      <img class="img-fluid w-100" src="https://www.verywellfamily.com/thmb/i7DhOuOyBsQqb49Yb3ScyFZzauk=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-519516013-56cb3aea3df78cfb379b789f.jpg">
+      <img class="img-fluid w-100" :src=" isLoading ? 'null' : quizCurrQuestion.featureImage">
       <div class="texture-back"> </div>
     </div>
     <div class="bodyQ">
       <div class="card my-3">
         <div class="p-2">
-          This graphic went viral on social media but was debunked. What should make you doubt it?
+          {{ isLoading ? 'Loading...' : quizCurrQuestion.questionText }}
         </div>
       </div>
-      <button type="button" class="btn btn-outline-secondary btn-block">The cheesy photo</button>
-      <button type="button" class="btn btn-outline-secondary btn-light btn-block"> No link to an original post</button>
-      <div class="row mb-5">
-        <div class="col">
-          <p class="mt-2">
-            <span class="answer font-weight-bold "> Yes! </span> The font, date, and photo aren't the problem--it's the lack of a source! Anyone can photoshop words on top of an image. Memes like this can originate from satire sites, hacked
-            accounts,
-            or tabloids that make stuff up so you grab them while paying for toilet paper. Beware!
-          </p>
-            <div class="text-right pulse">
-              <span class="icon-arrow-right arrow"></span>
-            </div>
-        </div>
+      <template v-if="!isLoading">
+        <button v-for="(option, index) in quizCurrQuestion.options" :key="option.id" type="button" :class="[clickedOption === index? 'active' : '','btn btn-outline-secondary btn-block']" @click="processResponse(index)">{{ option.optionText }}</button>
+      </template>
+      <template v-else>
+        <button type="button" class="btn btn-outline-secondary btn-block">Loading...</button>
+      </template>
+      <template v-if="response">
+        <div class="row mb-5">
+          <div class="col">
+            <p class="mt-2">
+              <span class="answer font-weight-bold "> {{ questionResult.yesNo }} </span> {{questionResult.resultText}}
+            </p>
+              <div class="text-right pulse">
+                <span class="icon-arrow-right arrow"></span>
+              </div>
+          </div>
 
-      </div>
+        </div>
+      </template>
 
     </div>
   </div>
@@ -37,8 +41,46 @@
 <script>
 export default {
   name: 'QuizFront',
-  props: {
-    data: Object
+  data() {
+    return {
+      response: false,
+      currQuestionCounter: 0,
+      questionResult: {},
+      clickedOption: -1,
+    }
+  },
+  methods: {
+    processResponse(index) {
+      if(this.clickedOption < 0){
+        this.clickedOption = index;
+        if(this.quizCurrQuestion.options[index].correctOption){
+          this.questionResult.yesNo = "Yes"
+          this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
+        }else{
+          this.questionResult.yesNo = "No"
+          this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
+        }
+        this.response = true;
+      }
+    }
+  },
+  computed: {
+    isLoading(){
+      return this.$store.state.isLoading;
+    },
+    quizData() {
+      return this.$store.state.quizData;
+    },
+    quizQuestions() {
+      if(!this.isLoading){
+        return this.$store.state.quizData.questions;
+      }
+    },
+    quizCurrQuestion() {
+      if(!this.isLoading){
+        return this.quizQuestions[this.currQuestionCounter];
+      }
+    }
   }
 }
 </script>
@@ -111,7 +153,7 @@ h1 {
 .bodyQ {
     z-index: 3;
     position: relative;
-    top: -10%;
+    top: -50px;
     margin: 5%;
 }
 

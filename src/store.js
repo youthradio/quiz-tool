@@ -29,7 +29,7 @@ const mutations = {
       }
       const fetchedData = await graphqlFetch();
       const data = await fetchedData.json();
-      state.quizData = data.data;
+      state.quizData = data.data.quiz;
       state.isLoading = false;
   }
 }
