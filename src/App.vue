@@ -1,5 +1,7 @@
 <template>
-  <div class="container-fluid" id="app">
+  <div 
+    id="app" 
+    class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-6 mx-auto">
         <h1>Quiz</h1>
@@ -13,7 +15,7 @@
 import QuizFront from './components/QuizFront.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     QuizFront
   },

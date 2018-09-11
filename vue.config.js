@@ -8,5 +8,6 @@ module.exports = {
   assetsDir: 'src/assets',
   runtimeCompiler: undefined,
   productionSourceMap: undefined,
-  parallel: undefined
+  parallel: undefined,
+  lintOnSave: undefined
 }
