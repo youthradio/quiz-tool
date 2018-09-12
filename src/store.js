@@ -9,13 +9,20 @@ const state = {
 }
 const actions = {
   fetchData ({ commit }) {
-      commit('MAKE_GQL_QUERY', {
-        url: 'http://localhost:4000/graphql',
-        query: QUERY('5b930f393f9082129af6bc74')
-    })
+    commit('FAKE_DATA');
+    //   commit('MAKE_GQL_QUERY', {
+    //     url: 'http://localhost:4000/graphql',
+    //     query: QUERY('5b930f393f9082129af6bc74')
+    // })
   }
 }
 const mutations = {
+  async FAKE_DATA(state){
+    state.isLoading = true;
+    const allData = require('./assets/fake.json')
+    state.quizData = allData.data.quiz;
+    state.isLoading = false;
+  },
   async MAKE_GQL_QUERY (state, { url, query }) {
       state.isLoading = true;
       const graphqlFetch = async () => {

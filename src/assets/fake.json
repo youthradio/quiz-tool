@@ -1,0 +1,68 @@
+{
+  "data": {
+    "quiz": {
+      "id": "5b930f393f9082129af6bc74",
+      "description": "This is a new Quiz 2",
+      "featureImage": "http://news.uic.edu/files/2014/10/vote-button.jpeg",
+      "questions": [{
+        "id": "5b930f923f9082129af6bc75",
+        "questionOrder": 1,
+        "questionText": "Who is the President?",
+        "featureImage": "http://econintersect.com/images/2013/8/97056712ztemp.png",
+        "options": [{
+          "id": "5b930fd83f9082129af6bc76",
+          "optionText": "Obama",
+          "resultText": "no, we wish",
+          "correctOption": false
+        }, {
+          "id": "5b930fe73f9082129af6bc77",
+          "optionText": "Trump",
+          "resultText": "Yes, Unfortunately",
+          "correctOption": true
+        }]
+      }, {
+        "id": "5b970f24f294861365341c5c",
+        "questionOrder": 2,
+        "questionText": "what is usa capital ?",
+        "featureImage": "https://i.imgur.com/M17RJ06.jpg",
+        "options": [{
+          "id": "5b970f70f294861365341c5d",
+          "optionText": "Washington, DC",
+          "resultText": "Yes, bordering the states of Maryland and Virginia.",
+          "correctOption": true
+        }, {
+          "id": "5b970fa7f294861365341c5e",
+          "optionText": "Washington, CA",
+          "resultText": "No, this is washington in Nevada County",
+          "correctOption": false
+        }, {
+          "id": "5b970feff294861365341c5f",
+          "optionText": "Oakland, CA",
+          "resultText": "No, Oakland no, it would be nice!",
+          "correctOption": false
+        }]
+      }, {
+        "id": "5b9710adf294861365341c60",
+        "questionOrder": 3,
+        "questionText": "What are the main political parties",
+        "featureImage": "https://www.prgn.com/wp-content/uploads/2018/04/politics.jpg",
+        "options": [{
+          "id": "5b971126f294861365341c61",
+          "optionText": "Libertarian Party",
+          "resultText": "No, but they're big",
+          "correctOption": false
+        }, {
+          "id": "5b97114ff294861365341c62",
+          "optionText": "Democratic Party and Republican Party",
+          "resultText": "Yes, they're the big ones",
+          "correctOption": true
+        }, {
+          "id": "5b97117ef294861365341c63",
+          "optionText": "Green Party",
+          "resultText": "No, they're the 2nd minor with big numbers",
+          "correctOption": false
+        }]
+      }]
+    }
+  }
+}
