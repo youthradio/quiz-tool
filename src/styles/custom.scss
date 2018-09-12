@@ -21,6 +21,12 @@ h1, h2, h3, h4 {
   font-family: 'Days Sans', sans-serif !important;
   color: $sky-blue !important;
 }
+.question {
+  font-weight: 900 !important;
+  font-family: 'Days Sans', sans-serif !important;
+  text-transform: uppercase;
+  color: $black !important;
+}
 
 .a-dark:hover {
   color: $black;

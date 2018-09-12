@@ -48,7 +48,7 @@
             </div>
           </template>
           <template v-else>
-            <div class="p-2">
+            <div class="p-2 question">
               {{ isLoading ? 'Loading...' : quizCurrQuestion.questionText }}
             </div>
           </template>
@@ -59,7 +59,7 @@
               v-for="(option, index) in quizCurrQuestion.options"
               :key="option.id"
               :disabled="hasRespondOption && clickedOption !== index"
-              :class="[clickedOption === index? 'active' : '','btn btn-outline-secondary btn-block']"
+              :class="[clickedOption === index? 'active' : '','btn btn-outline-dark btn-block']"
               type="button"
               @click="processResponse(index)">
               {{ option.optionText }}
@@ -68,7 +68,7 @@
           <template v-else>
             <button
               type="button"
-              class="btn btn-outline-secondary btn-block">
+              class="btn btn-outline-dark btn-block">
               Loading...
             </button>
           </template>
@@ -191,11 +191,9 @@ h1 {
 
 .question {
     background-color: $white;
-    border: lightgrey 1px solid;
-    border-radius: 2px;
-    padding: 1%;
-    height: 97px;
-
+    // border: lightgrey 1px solid;
+    border-radius: 5px;
+    box-shadow: 5px 5px $dark;
 }
 
 .answer {
