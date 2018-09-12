@@ -3,7 +3,7 @@ module.exports = {
     sourceMap: true
   },
 
-  baseUrl: '/',
+  baseUrl: '',
   outputDir: undefined,
   assetsDir: 'src/assets',
   runtimeCompiler: undefined,
