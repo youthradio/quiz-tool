@@ -94,25 +94,25 @@ export default new Vuex.Store({
   state,
   actions
 })
-
-const QUERY = (id) => `
-query {
-  quiz: getQuizById( id: "${id}" ){
-    id
-    description
-    featureImage
-    questions {
-      id
-      questionOrder
-      questionText
-      featureImage
-      options{
-        id
-        optionText
-        resultText
-        correctOption
-      }
-    }
-  }
-}
-`
+//
+// const QUERY = (id) => `
+// query {
+//   quiz: getQuizById( id: "${id}" ){
+//     id
+//     description
+//     featureImage
+//     questions {
+//       id
+//       questionOrder
+//       questionText
+//       featureImage
+//       options{
+//         id
+//         optionText
+//         resultText
+//         correctOption
+//       }
+//     }
+//   }
+// }
+// `

@@ -13,8 +13,8 @@
         </template>
         <template v-else>
           <img
-            class="img-fluid w-100"
-            src="https://i.imgur.com/bieYsvQ.jpg">
+            :src="scorePage.scoreImage"
+            class="img-fluid w-100">
         </template>
         <div class="texture-back" />
       </div>
@@ -22,13 +22,13 @@
         <div class="card my-3">
           <template v-if="quizResult">
             <div class="card-body">
-              <h3> You are ready to hit the polls! </h3>
+              <h3> {{ scorePage.scoreTitle }} </h3>
               <p>
                 You got
                 <span class="correct">{{ totalScore }}</span>
                 out of
                 <span class="qList">{{ totalQuestion }}</span>
-                correct! This is a short description about your result. Result response should be short.
+                correct!  {{ scorePage.scoreDescription }}
               </p>
             </div>
             <div class="d-flex align-items-center">
@@ -139,7 +139,15 @@ export default {
     },
     shuffleOptions() {
       return this.quizQuestions[this.currQuestionCounter].options.slice(0).sort(() => 0.5 - Math.random());
-    }
+    },
+    scorePage() {
+      if (!this.isLoading) {
+        return this.$store.state.quizData.scorePage.find(score => {
+          const range = score.scoreRange.split('-').map(e => parseInt(e))
+          return this.totalScore >= range[0] && this.totalScore <= range[1];
+        })
+      }
+    },
   },
   methods: {
     processResponse(index) {
