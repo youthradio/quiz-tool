@@ -48,7 +48,7 @@
             </div>
           </template>
           <template v-else>
-            <div class="p-2 question">
+            <div class="p-3 question">
               {{ isLoading ? 'Loading...' : quizCurrQuestion.questionText }}
             </div>
           </template>
@@ -58,8 +58,8 @@
             <button
               v-for="(option, index) in quizCurrQuestion.options"
               :key="option.id"
-              :disabled="hasRespondOption && clickedOption !== index"
-              :class="[clickedOption === index? 'active' : '','btn btn-outline-dark btn-block']"
+              :disabled="hasRespondOption"
+              :class="[hasRespondOption ? (option.correctOption ? 'btn-yes': 'btn-no') : '','btn btn-outline-dark btn-block']"
               type="button"
               @click="processResponse(index)">
               {{ option.optionText }}
@@ -191,7 +191,21 @@ h1 {
     color: $white !important;
 }
 .btn {
+    white-space: normal;
     background-color: $white;
+}
+// .btn:disabled{
+//   opacity: 1.0;
+// }
+.btn-yes:disabled {
+  color: $white;
+  background-color: $green;
+  border-color: $green;
+}
+.btn-no:disabled {
+  color: $white;
+  background-color: $red;
+  border-color: $red;
 }
 .img-limit {
     max-width: 30px;
@@ -233,13 +247,13 @@ h1 {
         transform: translateX(0px);
     }
 }
-
 .shakeNo {
     animation: shakeNo 0.82s ease-in both;
     color: $red;
 }
 .shakeYes {
     animation: shakeYes 0.82s ease-in both;
+    color: $green;
 }
 @keyframes shakeNo {
     10%,
