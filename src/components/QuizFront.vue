@@ -59,7 +59,11 @@
               v-for="(option, index) in quizCurrQuestion.options"
               :key="option.id"
               :disabled="hasRespondOption"
-              :class="[hasRespondOption ? (option.correctOption ? 'btn-yes': 'btn-no') : '','btn btn-outline-dark btn-block']"
+              :class="[hasRespondOption ? (option.correctOption ?
+                         'btn-yes':
+                         'btn-no') :
+                       '',
+                       'btn btn-outline-dark btn-block']"
               type="button"
               @click="processResponse(index)">
               {{ option.optionText }}
@@ -78,9 +82,9 @@
                 <p class="mt-2">
                   <span
                     :class="[questionResult.yesNo == 'Wrong'?
-                      'shakeNo':
-                      'shakeYes',
-                      'answer font-weight-bold d-inline-block']">
+                               'shakeNo':
+                               'shakeYes',
+                             'answer font-weight-bold d-inline-block']">
                     {{ questionResult.yesNo }}
                   </span>
                   {{ questionResult.resultText }}
@@ -139,7 +143,10 @@ export default {
       }
     },
     shuffleOptions() {
-      return this.quizQuestions[this.currQuestionCounter].options.slice(0).sort(() => 0.5 - Math.random());
+      return this.quizQuestions[this.currQuestionCounter]
+        .options
+        .slice(0)
+        .sort(() => 0.5 - Math.random());
     },
     scorePage() {
       if (!this.isLoading) {
