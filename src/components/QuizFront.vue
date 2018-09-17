@@ -227,7 +227,7 @@ h1 {
 .question {
     background-color: $white;
     border-radius: 5px;
-    box-shadow: 5px 5px $dark;
+    box-shadow: 0px 3px 3px $dark;
     font-weight: 900 !important;
     font-family: 'Days Sans', sans-serif !important;
     line-height: 1.05;
