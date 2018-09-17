@@ -31,7 +31,7 @@
                 correct!  {{ scorePage.scoreDescription }}
               </p>
             </div>
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center pl-3 pb-2">
               <span
                 class="icon-facebook-inverted share-icon m-1"
                 @click="nextQuestion"/>
@@ -40,7 +40,7 @@
                 @click="nextQuestion"/>
 
               <div
-                class="ml-auto align-middle pointer d-flex align-items-center"
+                class="ml-auto align-middle pointer d-flex align-items-center pr-2"
                 @click="tryAgain">
                 <span>Try Again</span>
                 <div class="ml-2 icon-arrow-right pulse"/>
