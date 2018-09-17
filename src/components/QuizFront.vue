@@ -77,9 +77,10 @@
               <div class="col">
                 <p class="mt-2">
                   <span
-                    :class="[questionResult.yesNo == 'No'?
+                    :class="[questionResult.yesNo == 'Wrong'?
                       'shakeNo':
-                    'shakeYes','answer font-weight-bold d-inline-block']">
+                      'shakeYes',
+                      'answer font-weight-bold d-inline-block']">
                     {{ questionResult.yesNo }}
                   </span>
                   {{ questionResult.resultText }}
@@ -155,10 +156,10 @@ export default {
         this.clickedOption = index;
         if (this.quizCurrQuestion.options[index].correctOption) {
           this.totalScore++;
-          this.questionResult.yesNo = "Yes"
+          this.questionResult.yesNo = "Correct"
           this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
         } else {
-          this.questionResult.yesNo = "No"
+          this.questionResult.yesNo = "Wrong"
           this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
         }
         this.hasRespondOption = true;
@@ -194,9 +195,9 @@ h1 {
     white-space: normal;
     background-color: $white;
 }
-// .btn:disabled{
-//   opacity: 1.0;
-// }
+.btn:disabled{
+  opacity: 1.0;
+}
 .btn-yes:disabled {
   color: $white;
   background-color: $green;
@@ -213,10 +214,31 @@ h1 {
 
 .question {
     background-color: $white;
-    // border: lightgrey 1px solid;
     border-radius: 5px;
     box-shadow: 5px 5px $dark;
+    font-weight: 900 !important;
+    font-family: 'Days Sans', sans-serif !important;
+    line-height: 1.05;
+    letter-spacing: 0.64px;
+    color: $black !important;
 }
+
+.num {
+    z-index: 4;
+    position: absolute;
+    left: 5%;
+}
+
+.num {
+  h1, h2, h3, h4 {
+    font-weight: 700 !important;
+    font-family: 'Assistant', sans-serif !important;
+    color: $white !important;
+    font-size: 2.5rem;
+  }
+}
+
+
 
 .answer {
     font-family: 'Open', sans-serif;
@@ -317,14 +339,5 @@ h1 {
     position: relative;
     top: -50px;
     margin: 5%;
-}
-
-.num {
-    z-index: 4;
-    position: absolute;
-    left: 5%;
-    // padding-left: 0%;
-    // top: 0%;
-    /*   font-weight: medium; */
 }
 </style>
