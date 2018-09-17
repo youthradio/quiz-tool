@@ -33,11 +33,11 @@
             </div>
             <div class="d-flex align-items-center pl-3 pb-2">
               <span
-                class="icon-facebook-inverted share-icon m-1"
-                @click="nextQuestion"/>
+                class="icon-facebook-inverted share-icon m-1 pointer"
+                @click="facebookThis"/>
               <span
-                class="icon-twitter-inverted share-icon m-1"
-                @click="nextQuestion"/>
+                class="icon-twitter-inverted share-icon m-1 pointer"
+                @click="tweetMessage"/>
 
               <div
                 class="ml-auto align-middle pointer d-flex align-items-center pr-2"
@@ -179,6 +179,18 @@ export default {
       this.clickedOption = -1;
       this.quizResult = false;
       this.hasRespondOption = false;
+    },
+    tweetMessage () {
+      const url = 'https://www.youthradio.org/mid-term-elections'
+      const tweet = `YR Media Mid Term Elections: ${url}`
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`
+      window.open(tweetUrl, 'pop', 'width=600, height=400, scrollbars=no')
+    },
+    facebookThis () {
+      const url = 'https://www.youthradio.org/mid-term-elections'
+      const title = 'Mid Terms Elections by YR Media'
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&t=${title}`
+      window.open(facebookUrl, '_blank')
     }
   },
 }
