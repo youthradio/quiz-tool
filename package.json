@@ -19,6 +19,7 @@
     "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
     "node-sass": "^4.9.3",
+    "resize-observer-polyfill": "^1.5.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.17"
   },

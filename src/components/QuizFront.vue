@@ -79,16 +79,16 @@
           <template v-if="hasRespondOption">
             <div class="row mb-5">
               <div class="col">
-                <p class="mt-2">
-                  <span
-                    :class="[questionResult.yesNo == 'Wrong'?
-                               'shakeNo':
-                               'shakeYes',
-                             'answer font-weight-bold d-inline-block']">
-                    {{ questionResult.yesNo }}
-                  </span>
-                  {{ questionResult.resultText }}
-                </p>
+                <div
+                  :class="[questionResult.yesNo == 'Wrong'?
+                             'shakeNo':
+                             'shakeYes',
+                           'answer font-weight-bold d-inline-block']">
+                  {{ questionResult.yesNo }}
+                </div>
+                <div
+                  class="responseBox"
+                  v-html="questionResult.resultText"/>
                 <div class="text-right pulse">
                   <span
                     class="icon-arrow-right arrow"
@@ -247,7 +247,6 @@ h1 {
     position: absolute;
     left: 5%;
 }
-
 .num {
   h1, h2, h3, h4 {
     font-weight: 700 !important;

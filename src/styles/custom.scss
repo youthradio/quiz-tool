@@ -44,7 +44,9 @@ $gray-900: $black;
   background-color: $black;
   color: $white;
 }
-
+a {
+  color: blue !important;
+}
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @include media-breakpoint-up(xs) {
   html { font-size: 15px;}
