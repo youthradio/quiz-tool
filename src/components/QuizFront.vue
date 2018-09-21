@@ -28,7 +28,8 @@
                 <span class="correct">{{ totalScore }}</span>
                 out of
                 <span class="qList">{{ totalQuestion }}</span>
-                correct!  {{ scorePage.scoreDescription }}
+                correct!
+                <span v-html="scorePage.scoreDescription"></span>
               </p>
             </div>
             <div class="d-flex align-items-center pl-3 pb-2">
@@ -79,14 +80,13 @@
           <template v-if="hasRespondOption">
             <div class="row mb-5">
               <div class="col">
-                <div
+                <span
                   :class="[questionResult.yesNo == 'Wrong'?
                              'shakeNo':
                              'shakeYes',
-                           'answer font-weight-bold d-inline-block']">
-                  {{ questionResult.yesNo }}
-                </div>
-                <div
+                           'answer font-weight-bold d-inline-block mr-2']"
+                  v-html="questionResult.yesNo"/>
+                <span
                   class="responseBox"
                   v-html="questionResult.resultText"/>
                 <div class="text-right pulse">
