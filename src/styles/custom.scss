@@ -45,16 +45,16 @@ $gray-900: $black;
   color: $white;
 }
 
-/* Document level adjustments */
-html {
-  font-size: 17px;
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@include media-breakpoint-up(xs) {
+  html { font-size: 15px;}
 }
-@media (max-width: 992px) {
+@include media-breakpoint-up(sm) {
   html { font-size: 15px; }
 }
-@media (max-width: 576px) {
-  html { font-size: 13px; }
+@include media-breakpoint-up(md) {
+  html { font-size: 18px; }
 }
-
-
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@include media-breakpoint-up(lg) {
+  html { font-size: 18px; }
+}
