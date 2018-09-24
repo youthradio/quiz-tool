@@ -29,7 +29,7 @@
                 out of
                 <span class="qList">{{ totalQuestion }}</span>
                 correct!
-                <span v-html="scorePage.scoreDescription"></span>
+                <span v-html="scorePage.scoreDescription"/>
               </p>
             </div>
             <div class="d-flex align-items-center pl-3 pb-2">
@@ -213,19 +213,20 @@ h1 {
 .btn {
     white-space: normal;
     background-color: $white;
+    // font-weight: 600;
 }
 .btn:disabled{
   opacity: 1.0;
 }
 .btn-yes:disabled {
-  color: $white;
-  background-color: $green;
-  border-color: $green;
+  color: $dark;
+  background-color: lighten($green, 10%);
+  border-color: lighten($green, 10%);
 }
 .btn-no:disabled {
-  color: $white;
-  background-color: $red;
-  border-color: $red;
+  color: $dark;
+  background-color: lighten($red, 10%);
+  border-color: lighten($red, 10%);
 }
 .img-limit {
     max-width: 30px;
@@ -246,6 +247,7 @@ h1 {
     z-index: 4;
     position: absolute;
     left: 5%;
+    text-shadow: 0px 3px 3px #323232;
 }
 .num {
   h1, h2, h3, h4 {
