@@ -64,6 +64,9 @@
                          'btn-yes':
                          'btn-no') :
                        '',
+                       clickedOption === index ?
+                         'active' :
+                         '',
                        'btn btn-outline-dark btn-block']"
               type="button"
               @click="processResponse(index)">
@@ -89,9 +92,9 @@
                 <span
                   class="responseBox"
                   v-html="questionResult.resultText"/>
-                <div class="text-right pulse">
+                <div class="d-flex justify-content-end">
                   <span
-                    class="icon-arrow-right arrow"
+                    class="icon-arrow-right arrow pulse"
                     @click="nextQuestion" />
                 </div>
               </div>
@@ -227,6 +230,9 @@ h1 {
   color: $dark;
   background-color: lighten($red, 10%);
   border-color: lighten($red, 10%);
+}
+.active {
+  box-shadow: 0px 0px 4px 2px lighten($dark, 20%);
 }
 .img-limit {
     max-width: 30px;
