@@ -8,12 +8,12 @@
             <h1>{{ currQuestionCounter + 1 }}</h1>
           </span>
           <img
-            :src="isLoading ? 'null' : quizCurrQuestion.featureImage"
+            :src="isLoading ? 'null' : require(`../assets/${quizCurrQuestion.featureImage}`)"
             class="img-fluid w-100">
         </template>
         <template v-else>
           <img
-            :src="scorePage.scoreImage"
+            :src="require(`../assets/${scorePage.scoreImage}`)"
             class="img-fluid w-100">
         </template>
         <div class="texture-back" />
@@ -356,7 +356,8 @@ h1 {
     width: 30%;
 
     /* border: 3px solid blue; */
-    background-image: url("https://images-na.ssl-images-amazon.com/images/I/A1Kuvnb5YAL._SX425_.jpg");
+    background-image: url("../assets/texture.jpg");
+    background-repeat: repeat-y;
 
 }
 
