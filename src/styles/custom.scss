@@ -45,7 +45,7 @@ $gray-900: $black;
   color: $white;
 }
 a {
-  color: blue !important;
+  color: $sky-blue !important;
 }
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @include media-breakpoint-up(xs) {
