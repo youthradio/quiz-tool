@@ -20,7 +20,7 @@ const actions = {
 const mutations = {
   async CSV_DATA(state){
     state.isLoading = true;
-    const scoreData = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRcB6J-KsftmFuygHudtucGSi5yjsMcjhSbtQGv4RohpoibjAmoipZN_AhQFbvzV_jwP3tZcsUxVYjc/pub?gid=1758770676&single=true&output=csv')
+    const scoreData = await fetch('quiz_data_finalscore.csv')
       .then(res => res.text())
       .then(res => csvParse(res))
       .then(data => {
@@ -32,7 +32,7 @@ const mutations = {
           scoreDescription: score.Description,
       }))
     })
-    const questionData =  await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRcB6J-KsftmFuygHudtucGSi5yjsMcjhSbtQGv4RohpoibjAmoipZN_AhQFbvzV_jwP3tZcsUxVYjc/pub?gid=0&single=true&output=csv')
+    const questionData =  await fetch('quiz_data_questions.csv')
       .then(res => res.text())
       .then(res => csvParse(res))
       .then(data => {

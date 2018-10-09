@@ -1,6 +1,8 @@
 <template>
   <div class="row">
-    <div class="col-12 col-md-12 mx-auto">
+    <div 
+      v-if="!isLoading" 
+      class="col-12 col-md-12 mx-auto">
 
       <div class="position-relative w-100">
         <template v-if="!quizResult">
@@ -8,7 +10,7 @@
             <h1>{{ currQuestionCounter + 1 }}</h1>
           </span>
           <img
-            :src="isLoading ? 'null' : require(`../assets/${quizCurrQuestion.featureImage}`)"
+            :src="require(`../assets/${quizCurrQuestion.featureImage}`)"
             class="img-fluid w-100">
         </template>
         <template v-else>
@@ -102,6 +104,27 @@
             </div>
           </template>
         </template>
+      </div>
+    </div>
+    <div 
+      v-else 
+      class="col-12 col-md-12 mx-auto">
+      Loading...
+      <div class="spinner-wrap">
+        <div class="spinner-default">
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+          <div/>
+        </div>
       </div>
     </div>
   </div>
