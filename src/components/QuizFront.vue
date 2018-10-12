@@ -33,13 +33,6 @@
               </p>
             </div>
             <div class="d-flex align-items-center pl-3 pb-2">
-              <span
-                class="icon-facebook-inverted share-icon m-1 pointer"
-                @click="facebookThis"/>
-              <span
-                class="icon-twitter-inverted share-icon m-1 pointer"
-                @click="tweetMessage"/>
-
               <div
                 class="ml-auto align-middle pointer d-flex align-items-center pr-2"
                 @click="tryAgain">
