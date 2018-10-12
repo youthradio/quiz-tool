@@ -23,13 +23,16 @@ export default {
     return {}
   },
   created() {
-    this.$store.dispatch('fetchData');
+    const quizName = this.$route.query.quizName;
+    this.$store.dispatch('fetchData', quizName);
   },
   mounted() {
     const elementRoot = this.$root.$el;
     const resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const { height } = entry.contentRect;
+        const {
+          height
+        } = entry.contentRect;
         const elementHeight = 'elementHeight:' + height;
         // console.log(elementHeight);
         parent.postMessage(elementHeight, '*');

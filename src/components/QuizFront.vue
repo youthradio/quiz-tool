@@ -1,24 +1,22 @@
 <template>
   <div class="row">
-    <div 
-      v-if="!isLoading" 
+    <div
+      v-if="!isLoading"
       class="col-12 col-md-12 mx-auto">
-
-      <div class="position-relative w-100">
+      <div class="w-100">
         <template v-if="!quizResult">
           <span class="num">
             <h1>{{ currQuestionCounter + 1 }}</h1>
           </span>
           <img
-            :src="require(`../assets/${quizCurrQuestion.featureImage}`)"
+            :src="`quizes/${quizName}/${quizCurrQuestion.featureImage}`"
             class="img-fluid w-100">
         </template>
         <template v-else>
           <img
-            :src="require(`../assets/${scorePage.scoreImage}`)"
+            :src="`quizes/${quizName}/${scorePage.scoreImage}`"
             class="img-fluid w-100">
         </template>
-        <div class="texture-back" />
       </div>
       <div class="bodyQ">
         <div class="card my-3">
@@ -106,8 +104,8 @@
         </template>
       </div>
     </div>
-    <div 
-      v-else 
+    <div
+      v-else
       class="col-12 col-md-12 mx-auto">
       Loading...
       <div class="spinner-wrap">
@@ -144,6 +142,9 @@ export default {
     }
   },
   computed: {
+    quizName() {
+      return this.$route.query.quizName;
+    },
     isLoading() {
       return this.$store.state.isLoading;
     },
@@ -275,7 +276,7 @@ h1 {
 .num {
     z-index: 4;
     position: absolute;
-    left: 5%;
+    left: 6%;
     text-shadow: 0px 3px 3px #323232;
 }
 .num {
@@ -369,19 +370,6 @@ h1 {
     60% {
         transform: translateY(4px);
     }
-}
-.texture-back {
-    position: absolute;
-    z-index: -1;
-    top: 10%;
-    left: -10%;
-    height: 100%;
-    width: 30%;
-
-    /* border: 3px solid blue; */
-    background-image: url("../assets/texture.jpg");
-    background-repeat: repeat-y;
-
 }
 
 .bodyQ {

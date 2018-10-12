@@ -8,8 +8,8 @@ const state = {
   quizData: null,
 }
 const actions = {
-  fetchData ({ commit }) {
-    commit('CSV_DATA');
+  fetchData ({ commit }, quizName) {
+    commit('CSV_DATA', quizName);
     //commit('FAKE_DATA');
     //   commit('MAKE_GQL_QUERY', {
     //     url: 'http://localhost:4000/graphql',
@@ -18,9 +18,9 @@ const actions = {
   }
 }
 const mutations = {
-  async CSV_DATA(state){
+  async CSV_DATA(state, quizName){
     state.isLoading = true;
-    const scoreData = await fetch('quiz_data_finalscore.csv')
+    const scoreData = await fetch(`${process.env.BASE_URL}quizes/${quizName}/finalscore.csv`)
       .then(res => res.text())
       .then(res => csvParse(res))
       .then(data => {
@@ -32,7 +32,7 @@ const mutations = {
           scoreDescription: score.Description,
       }))
     })
-    const questionData =  await fetch('quiz_data_questions.csv')
+    const questionData =  await fetch(`${process.env.BASE_URL}/quizes/${quizName}/questions.csv`)
       .then(res => res.text())
       .then(res => csvParse(res))
       .then(data => {

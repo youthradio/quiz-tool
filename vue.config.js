@@ -3,7 +3,7 @@ module.exports = {
     sourceMap: true
   },
 
-  baseUrl: '',
+  baseUrl: '/quiz-tool/',
   outputDir: undefined,
   assetsDir: 'src/assets',
   runtimeCompiler: undefined,
