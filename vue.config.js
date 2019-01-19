@@ -3,7 +3,8 @@ module.exports = {
     sourceMap: true
   },
 
-  publicPath: '/statics/quiz-tool/',
+  // publicPath: '/statics/quiz-tool/',
+  publicPath: '/quiz-tool/',
   outputDir: undefined,
   assetsDir: 'src/assets',
   runtimeCompiler: undefined,
