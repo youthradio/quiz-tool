@@ -1,12 +1,12 @@
 ScoreRange,ScoreImage,Title,Description
-0-0,quiz-images/result.jpg,At least you tried,You got 0 out of 10. No offense—you might want to read up on your U.S. history again.
-1-1,quiz-images/result.jpg,At least you tried,You got 1 out of 10. No offense—you might want to read up on your U.S. history again.
-2-2,quiz-images/result.jpg,At least you tried,You got 2 out of 10. No offense—you might want to read up on your U.S. history again.
-3-3,quiz-images/result.jpg,At least you tried,You got 3 out of 10. No offense—you might want to read up on your U.S. history again.
-4-4,quiz-images/result.jpg,OK,You got 4 out of 10. Not too bad!
-5-5,quiz-images/result.jpg,OK,You got 5 out of 10. Not too bad!
-6-6,quiz-images/result.jpg,OK,You got 6 out of 10. Not too bad!
-7-7,quiz-images/result.jpg,OK,You got 7 out of 10. Not too bad!
-8-8,quiz-images/result.jpg,Great!,You got 8 out of 10. Outstanding! Have you ever considered teaching AP U.S. history?
-9-9,quiz-images/result.jpg,Great!,You got 8 out of 10. Outstanding! Have you ever considered teaching AP U.S. history?
-10-10,quiz-images/result.jpg,Great!,You got 8 out of 10. Outstanding! Have you ever considered teaching AP U.S. history?
+0-0,quiz-images/quiz-1.jpg,At least you tried,No offense—you might want to read up on your U.S. history.
+1-1,quiz-images/quiz-1.jpg,At least you tried,No offense—you might want to read up on your U.S. history.
+2-2,quiz-images/quiz-1.jpg,At least you tried,No offense—you might want to read up on your U.S. history.
+3-3,,At least you tried,No offense—you might want to read up on your U.S. history.
+4-4,,OK,Not too bad!
+5-5,,OK,Not too bad!
+6-6,,OK,Not too bad!
+7-7,,OK,Not too bad!
+8-8,,Great!,Outstanding! Have you considered running for office?
+9-9,,Great!,Outstanding! Have you considered running for office?
+10-10,,Great!,Outstanding! Have you considered running for office?
