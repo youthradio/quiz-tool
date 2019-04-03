@@ -25,7 +25,7 @@
               <h3> {{ scorePage.scoreTitle }} </h3>
               <p>
                 You got
-                <span class="correct">{{ totalScore }}</span>
+                <span class="correct">{{ correctScore }}</span>
                 out of
                 <span class="qList">{{ totalQuestion }}</span>
                 correct!
@@ -74,7 +74,7 @@
             </button>
           </template>
           <template v-if="hasRespondOption">
-            <div class="row mb-5">
+            <div class="row">
               <div class="col">
                 <span
                   :class="[questionResult.yesNo == 'Wrong'?
@@ -85,15 +85,24 @@
                 <span
                   class="responseBox"
                   v-html="questionResult.resultText"/>
-                <div class="d-flex justify-content-end">
-                  <span
-                    class="icon-arrow-right arrow pulse"
-                    @click="nextQuestion" />
-                </div>
               </div>
 
             </div>
           </template>
+          <div class="row mt-3">
+            <div class="col">
+              <div :class="['d-flex', currQuestionCounter > 0 && !wentBack ? 'justify-content-between':'justify-content-end']">
+                <span 
+                  v-if="currQuestionCounter > 0 && !wentBack"
+                  class="icon-arrow-left arrow"
+                  @click="previousQuestion" />
+                <span 
+                  v-if="hasRespondOption"
+                  class="icon-arrow-right arrow pulse"
+                  @click="nextQuestion" />
+              </div>
+            </div>
+          </div>
         </template>
       </div>
     </div>
@@ -131,10 +140,18 @@ export default {
       currQuestionCounter: 0,
       questionResult: {},
       clickedOption: -1,
-      totalScore: 0,
+      scoreList: [],
+      wentBack: false,
     }
   },
   computed: {
+    correctScore() {
+      var totalScore = 0;
+      for (var i = 0; i < this.scoreList.length; i++) {
+        totalScore = totalScore + this.scoreList[i];
+      }  
+      return totalScore;
+    },
     quizName() {
       return this.$route.query.quizName;
     },
@@ -172,7 +189,7 @@ export default {
       if (!this.isLoading) {
         return this.$store.state.quizData.scorePage.find(score => {
           const range = score.scoreRange.split('-').map(e => parseInt(e))
-          return this.totalScore >= range[0] && this.totalScore <= range[1];
+          return this.correctScore >= range[0] && this.correctScore <= range[1];
         })
       }
     },
@@ -182,12 +199,13 @@ export default {
       if (this.clickedOption < 0) {
         this.clickedOption = index;
         if (this.quizCurrQuestion.options[index].correctOption) {
-          this.totalScore++;
-          this.questionResult.yesNo = "Correct"
-          this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
+          this.scoreList.push(1);
+          this.questionResult.yesNo = "Correct";
+          this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText;
         } else {
-          this.questionResult.yesNo = "Wrong"
-          this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText
+          this.scoreList.push(0);
+          this.questionResult.yesNo = "Wrong";
+          this.questionResult.resultText = this.quizCurrQuestion.options[index].resultText;
         }
         this.hasRespondOption = true;
       }
@@ -198,10 +216,27 @@ export default {
       this.hasRespondOption = false;
       if (this.currQuestionCounter >= this.totalQuestion) {
         this.quizResult = true;
+
       }
+      this.wentBack = false;
+
+      },
+    previousQuestion() {
+      this.currQuestionCounter--;
+      this.clickedOption = -1;
+
+      if (this.hasRespondOption) {
+        this.scoreList = this.scoreList.slice(2);
+      } else {
+        this.scoreList.pop();
+      }
+
+      this.hasRespondOption= false;
+      this.wentBack = true;
+
     },
     tryAgain() {
-      this.totalScore = 0;
+      this.scoreList = [];
       this.currQuestionCounter = 0;
       this.clickedOption = -1;
       this.quizResult = false;
