@@ -92,11 +92,11 @@
           <div class="row mt-3">
             <div class="col">
               <div :class="['d-flex', currQuestionCounter > 0 && !wentBack ? 'justify-content-between':'justify-content-end']">
-                <span 
+                <span
                   v-if="currQuestionCounter > 0 && !wentBack"
                   class="icon-arrow-left arrow"
                   @click="previousQuestion" />
-                <span 
+                <span
                   v-if="hasRespondOption"
                   class="icon-arrow-right arrow pulse"
                   @click="nextQuestion" />
@@ -149,7 +149,7 @@ export default {
       var totalScore = 0;
       for (var i = 0; i < this.scoreList.length; i++) {
         totalScore = totalScore + this.scoreList[i];
-      }  
+      }
       return totalScore;
     },
     quizName() {
@@ -327,6 +327,7 @@ h1 {
 .arrow {
     color: $sky-blue;
     font-size: 2rem;
+    cursor: pointer;
 }
 .share-icon {
     color: $sky-blue;
