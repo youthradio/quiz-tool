@@ -13,9 +13,18 @@
             class="img-fluid w-100">
         </template>
         <template v-else>
-          <img
-            :src="`quizes/${quizName}/${scorePage.scoreImage}`"
-            class="img-fluid w-100">
+          <picture>
+            <source 
+              :srcset="`quizes/${quizName}/${scorePage.scoreImage}`"
+              type="image/webp">
+            <source 
+              :srcset="`quizes/${quizName}/${scorePage.scoreImage.split('.')[0]}.gif`"
+              type="image/gif"> 
+            <img 
+              :src="`quizes/${quizName}/${scorePage.scoreImage}`"
+              class="img-fluid w-100">
+          </picture>
+
         </template>
       </div>
       <div class="bodyQ">
@@ -260,18 +269,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '~@/styles/variables';
+@import "~@/styles/variables";
 
 h1 {
-    color: $white !important;
+  color: $white !important;
 }
 .btn {
-    white-space: normal;
-    background-color: $white;
-    // font-weight: 600;
+  white-space: normal;
+  background-color: $white;
+  // font-weight: 600;
 }
-.btn:disabled{
-  opacity: 1.0;
+.btn:disabled {
+  opacity: 1;
 }
 .btn-yes:disabled {
   color: $dark;
@@ -287,124 +296,125 @@ h1 {
   box-shadow: 0px 0px 4px 2px lighten($dark, 20%);
 }
 .img-limit {
-    max-width: 30px;
+  max-width: 30px;
 }
 
 .question {
-    background-color: $white;
-    border-radius: 5px;
-    box-shadow: 0px 3px 3px $dark;
-    font-weight: 900 !important;
-    font-family: 'Days Sans', sans-serif !important;
-    line-height: 1.05;
-    letter-spacing: 0.64px;
-    color: $black !important;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0px 3px 3px $dark;
+  font-weight: 900 !important;
+  font-family: "Days Sans", sans-serif !important;
+  line-height: 1.05;
+  letter-spacing: 0.64px;
+  color: $black !important;
 }
 
 .num {
-    z-index: 4;
-    position: absolute;
-    left: 6%;
-    text-shadow: 0px 3px 3px #323232;
+  z-index: 4;
+  position: absolute;
+  left: 6%;
+  text-shadow: 0px 3px 3px #323232;
 }
 .num {
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-weight: 700 !important;
-    font-family: 'Assistant', sans-serif !important;
+    font-family: "Assistant", sans-serif !important;
     color: $white !important;
     font-size: 2.5rem;
   }
 }
 
-
-
 .answer {
-    font-family: 'Open', sans-serif;
-    font-size: 1.5rem;
-    color: #00cec3;
+  font-family: "Open", sans-serif;
+  font-size: 1.5rem;
+  color: #00cec3;
 }
 
 .arrow {
-    color: $sky-blue;
-    font-size: 2rem;
-    cursor: pointer;
+  color: $sky-blue;
+  font-size: 2rem;
+  cursor: pointer;
 }
 .share-icon {
-    color: $sky-blue;
-    font-size: 2rem;
+  color: $sky-blue;
+  font-size: 2rem;
 }
 .pulse {
-    cursor: pointer;
-    animation-duration: 0.5s;
-    animation-name: pulse;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
+  cursor: pointer;
+  animation-duration: 0.5s;
+  animation-name: pulse;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
 }
 @keyframes pulse {
-    from {
-        transform: translateX(-5px);
-    }
-    to {
-        transform: translateX(0px);
-    }
+  from {
+    transform: translateX(-5px);
+  }
+  to {
+    transform: translateX(0px);
+  }
 }
 .shakeNo {
-    animation: shakeNo 0.82s ease-in both;
-    color: $red;
+  animation: shakeNo 0.82s ease-in both;
+  color: $red;
 }
 .shakeYes {
-    animation: shakeYes 0.82s ease-in both;
-    color: $green;
+  animation: shakeYes 0.82s ease-in both;
+  color: $green;
 }
 @keyframes shakeNo {
-    10%,
-    90% {
-        transform: translateX(-1px);
-    }
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
 
-    20%,
-    80% {
-        transform: translateX(2px);
-    }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
 
-    30%,
-    50%,
-    70% {
-        transform: translateX(-4px);
-    }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
 
-    40%,
-    60% {
-        transform: translateX(4px);
-    }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
 }
 @keyframes shakeYes {
-    10%,
-    90% {
-        transform: translateY(-1px);
-    }
+  10%,
+  90% {
+    transform: translateY(-1px);
+  }
 
-    20%,
-    80% {
-        transform: translateY(2px);
-    }
+  20%,
+  80% {
+    transform: translateY(2px);
+  }
 
-    30%,
-    50%,
-    70% {
-        transform: translateY(-4px);
-    }
+  30%,
+  50%,
+  70% {
+    transform: translateY(-4px);
+  }
 
-    40%,
-    60% {
-        transform: translateY(4px);
-    }
+  40%,
+  60% {
+    transform: translateY(4px);
+  }
 }
 
 .bodyQ {
-    z-index: 3;
-    position: relative;
-    top: -50px;
-    margin: 5%;
+  z-index: 3;
+  position: relative;
+  top: -50px;
+  margin: 5%;
 }
 </style>
